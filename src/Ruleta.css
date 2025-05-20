@@ -1,0 +1,88 @@
+/* Asegúrate de que el html y body ocupen toda la altura */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Contenedor centrado vertical y horizontalmente */
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra en vertical */
+  align-items: center; /* centra en horizontal */
+  height: 100vh; /* 100% de la altura de la ventana */
+  text-align: center;
+}
+.ruleta {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.flecha {
+  position: absolute;
+  top: -15px; /* mantiene la flecha justo encima del círculo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  /* en lugar de border-bottom, usamos border-top para que apunte hacia abajo */
+  border-top: 25px solid red;
+  z-index: 2;
+}
+
+.circulo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid #000;
+  /* 0–180° azul (Carla), 180–360° verde (Marina) */
+  background: conic-gradient(yellow 0deg 180deg, black 180deg 360deg);
+  transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+  transform-origin: 50% 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* QUITAMOS writing-mode y text-orientation */
+
+.texto {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+  white-space: nowrap;
+}
+
+.texto-carla {
+  top: 50%; /* centro vertical del semicírculo azul (arriba) */
+  left: 25%;
+  color: yellow;
+}
+
+.texto-marina {
+  top: 50%; /* centro vertical del semicírculo verde (abajo) */
+  left: 75%;
+  color: black;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+.resultado {
+  margin-top: 35px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

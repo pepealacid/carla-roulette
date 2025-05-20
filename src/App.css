@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url("./fondobollo1.png"); /* Si lo quieres definir aquí, o lo puedes mantener en línea */
+  background-size: 100% 100%; /* ⬅️ esto fuerza que se estire al ancho y alto exactos */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .App-logo {
