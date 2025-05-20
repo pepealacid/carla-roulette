@@ -7,6 +7,23 @@ const Ruleta = () => {
   const [girando, setGirando] = useState(false);
   const audioRef = useRef(null); // referencia para el audio actual
 
+  function fadeOutAudio(audio, duration = 1000) {
+    const step = 50; // milisegundos entre pasos
+    const steps = duration / step;
+    const volumeStep = audio.volume / steps;
+
+    const fade = setInterval(() => {
+      if (audio.volume - volumeStep > 0) {
+        audio.volume -= volumeStep;
+      } else {
+        audio.volume = 0;
+        audio.pause();
+        audio.currentTime = 0;
+        clearInterval(fade);
+      }
+    }, step);
+  }
+
   const girarRuleta = () => {
     // Si hay audio sonando, lo detenemos
     if (audioRef.current) {
@@ -38,6 +55,13 @@ const Ruleta = () => {
       );
       audioRef.current = sonido;
       sonido.play();
+
+      // Cortar con fade out después de 5 segundos
+      setTimeout(() => {
+        if (audioRef.current) {
+          fadeOutAudio(audioRef.current, 1000); // 1 segundo de desvanecimiento
+        }
+      }, 5000);
     }, 4200);
   };
 
